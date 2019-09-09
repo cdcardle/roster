@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :players
+  has_many :teams
 
   validates_uniqueness_of :email
 

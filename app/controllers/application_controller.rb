@@ -84,7 +84,7 @@ class ApplicationController < Sinatra::Base
   get "/:slug" do
     if logged_in?
       @user = current_user
-      erb :roster
+      erb :coach
     else
       redirect '/'
     end
