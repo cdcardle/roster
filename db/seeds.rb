@@ -5,8 +5,8 @@ User.destroy_all
 Team.destroy_all
 Player.destroy_all
 
-joe = User.new(first_name: "Joe", last_name: "Jackson", email: "joejackson@gmail.com", password: "joej1234")
-pete = User.new(first_name: "Pete", last_name: "Smith", email: "petesmith@microsoft.com", password: "petes1234")
+joe = User.new(username: "joejackson123", first_name: "Joe", last_name: "Jackson", email: "joejackson@gmail.com", password: "joej1234")
+pete = User.new(username: "petesmith123", first_name: "Pete", last_name: "Smith", email: "petesmith@microsoft.com", password: "petes1234")
 
 joe.save
 pete.save

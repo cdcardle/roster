@@ -1,0 +1,7 @@
+<h2>Welcome back, Coach <%= @user.last_name %>!</h2>
+
+<ul>
+  <% @user.teams.each do |team| %>
+    <li><a href="/<%= @user.slug %>/teams/<%= team.id %>"><%= team.name %></a></li><br>
+  <% end %>
+</ul>

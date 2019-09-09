@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   has_many :players
   has_many :teams
 
+  validates_uniqueness_of :username
   validates_uniqueness_of :email
 
   def full_name
@@ -10,7 +11,7 @@ class User < ActiveRecord::Base
   end
 
   def slug
-      self.full_name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
+      self.username.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '')
   end
 
   def self.find_by_slug(slug)

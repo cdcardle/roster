@@ -34,6 +34,8 @@ class ApplicationController < Sinatra::Base
   post "/signup" do
     if !EmailAddress.valid?(params[:email])
       signup_error("Must use a valid email address!")
+    elsif params[:username].size < 8
+      signup_error("Username must be at least 8 characters long!")
     elsif params[:password].size < 8
       signup_error("Password must be at least 8 characters long!")
     elsif User.find_by(email: params[:email])
@@ -62,7 +64,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/login' do
-    @user = User.find_by(email: params[:email])
+    @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
       redirect "/#{current_user.slug}"
@@ -84,7 +86,18 @@ class ApplicationController < Sinatra::Base
   get "/:slug" do
     if logged_in?
       @user = current_user
-      erb :coach
+      erb :"users/show"
+    else
+      redirect '/'
+    end
+  end
+
+  # Teams
+
+  get '/:slug/teams/:id' do
+    if logged_in? && current_user.slug === params[:slug]
+      @team = Team.find(params[:id])
+      erb :"teams/show"
     else
       redirect '/'
     end
