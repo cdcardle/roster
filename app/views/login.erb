@@ -1,6 +1,14 @@
+<h1>Log In to view your Teams!</h1>
+
+<p style="color: red">
+    <% if flash.has?(:login_error) %>
+      <%= flash[:login_error] %>
+    <% end %>
+  </p>
+
 <form method=post action="/login">
-  <label for="username">Username:</label>
-    <input type="text" name="username" placeholder="Username"><br></br>
+  <label for="email">Email:</label>
+    <input type="text" name="email" placeholder="email"><br></br>
   <label for="password">Password:</label>
     <input type="password" name="password" placeholder="Password"><br></br>
 

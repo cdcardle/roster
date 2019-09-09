@@ -24,19 +24,29 @@ class ApplicationController < Sinatra::Base
   # Signup
 
   get "/signup" do
-    erb :signup
+    if logged_in?
+      redirect "/#{current_user.slug}"
+    else
+      erb :signup
+    end
   end
 
   post "/signup" do
-    if params[:username].empty? || params[:email].empty? || params[:password].empty?
-      
+    if !EmailAddress.valid?(params[:email])
+      signup_error("Must use a valid email address!")
+    elsif params[:password].size < 8
+      signup_error("Password must be at least 8 characters long!")
+    elsif User.find_by(email: params[:email])
+      signup_error("Email is already in use!")
     else
-      @user = User.new(username: params[:username], email: params[:email], password: params[:password])
+      @user = User.new(first_name: params[:first_name], last_name: params[:last_name], email: params[:email], password: params[:password])
+
       if @user.save
         session[:user_id] = @user.id
         redirect "/#{current_user.slug}"
       else
-        redirect "/error"
+        flash[:signup_error] = "Something else is wrong."
+        erb :signup
       end
     end
   end
@@ -45,19 +55,19 @@ class ApplicationController < Sinatra::Base
 
   get "/login" do
     if logged_in?
-      redirect `#{current_user.slug}`
+      redirect "/#{current_user.slug}"
     else
       erb :login
     end
   end
 
   post '/login' do
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(email: params[:email])
     if @user && @user.authenticate(params[:password])
       session[:user_id] = @user.id
-      redirect "/#{current_user.slug}/tweets"
+      redirect "/#{current_user.slug}"
     else
-      redirect '/login_error'
+      login_error("Username or password is incorrect!")
     end
   end
 
@@ -80,16 +90,6 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  # Errors
-
-  get "/login_error" do
-    erb :login_error
-  end
-
-  get "/error" do
-    erb :error
-  end
-
   # Helpers
 
   helpers do
@@ -99,6 +99,16 @@ class ApplicationController < Sinatra::Base
 
     def logged_in?
       !!session[:user_id]
+    end
+
+    def signup_error(string)
+      flash[:signup_error] = string
+      erb :signup
+    end
+
+    def login_error(string)
+      flash[:login_error] = string
+      erb :login
     end
   end
 end
