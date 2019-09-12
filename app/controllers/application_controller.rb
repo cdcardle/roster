@@ -81,18 +81,6 @@ class ApplicationController < Sinatra::Base
     redirect '/'
   end
 
-
-  # Users
-
-  get "/:slug" do
-    if logged_in? && current_user.slug === params[:slug]
-      @user = current_user
-      erb :"users/show"
-    else
-      redirect '/'
-    end
-  end
-
   # Helpers
 
   helpers do

@@ -8,10 +8,15 @@
 
 <h3>Create Team:</h3><br>
 
-<form id="new_form" method=post action="/<%= @user.slug %>/tweets">
-  <text name="name" placeholder="Team name..."></text>
+<form method=post action="/<%= @user.slug %>">
   <label for="name">Team Name::</label>
     <input type="text" name="name" placeholder="Name..."><br></br>
 
   <input type="submit" id="submit" value="Create Team">
 </form>
+
+<p style="color: red">
+  <% if flash.has?(:team_error) %>
+    <%= flash[:team_error] %>
+  <% end %>
+</p>
