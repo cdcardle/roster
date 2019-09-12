@@ -10,7 +10,8 @@ class TeamsController < ApplicationController
 
   post "/:slug/teams/:team_id" do
     if params[:first_name].empty? || params[:last_name].empty?
-      player_error("Names cannot be blank!S")
+      @team = Team.find(params[:team_id])
+      player_error("Names cannot be blank!")
     else
       @player = Player.new(first_name: params[:first_name], last_name: params[:last_name])
 
@@ -27,6 +28,6 @@ class TeamsController < ApplicationController
 
   def player_error(string)
     flash[:player_error] = string
-    erb :'teams/show'
+    erb :"teams/show"
   end
 end

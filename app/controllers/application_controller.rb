@@ -42,7 +42,6 @@ class ApplicationController < Sinatra::Base
     elsif User.find_by(email: params[:email])
       signup_error("Email is already in use!")
     else
-      binding.pry
       @user = User.new(first_name: params[:first_name], last_name: params[:last_name], username: params[:username], email: params[:email], password: params[:password])
 
       if @user.save

@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   post "/:slug" do
     if params[:name].empty?
+      @user = current_user
       team_error("Team name cannot be blank!")
     else
       @team = Team.new(name: params[:name])

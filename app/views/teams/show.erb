@@ -12,13 +12,13 @@
   <% end %>
 </p>
 
+<h3>Add Player:</h3><br>
+
 <p style="color: red">
   <% if flash.has?(:player_error) %>
     <%= flash[:player_error] %>
   <% end %>
 </p>
-
-<h3>Add Player:</h3><br>
 
 <form method=post action="/<%= @team.user.slug %>/teams/<%= @team.id %>">
   <label for="first_name">First Name:</label>
