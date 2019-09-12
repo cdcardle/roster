@@ -14,6 +14,7 @@ class ApplicationController < Sinatra::Base
   # Home
 
   get "/" do
+    # binding.pry
     if logged_in?
       redirect "/#{current_user.slug}"
     else
@@ -84,7 +85,7 @@ class ApplicationController < Sinatra::Base
   # Users
 
   get "/:slug" do
-    if logged_in?
+    if logged_in? && current_user.slug === params[:slug]
       @user = current_user
       erb :"users/show"
     else
@@ -92,12 +93,12 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  # Teams
+  # Players
 
-  get '/:slug/teams/:id' do
-    if logged_in? && current_user.slug === params[:slug]
-      @team = Team.find(params[:id])
-      erb :"teams/show"
+  get '/:slug/teams/:team_id/players/:player_id' do
+    if logged_in? && current_user.slug == params[:slug]
+      @player = Player.find(params[:player_id])
+      erb :"players/show"
     else
       redirect '/'
     end

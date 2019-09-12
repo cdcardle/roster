@@ -46,3 +46,11 @@ cobras.players << chris
 lions.players << ursula
 lions.players << jeff
 lions.players << cameron
+
+joe.players << tom
+joe.players << sam
+joe.players << peter
+joe.players << chris
+pete.players << ursula
+pete.players << jeff
+pete.players << cameron

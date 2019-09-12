@@ -2,6 +2,16 @@
 
 <ul>
   <% @user.teams.each do |team| %>
-    <li><a href="/<%= @user.slug %>/teams/<%= team.id %>"><%= team.name %></a></li><br>
+    <h4><li><a href="/<%= @user.slug %>/teams/<%= team.id %>"><%= team.name %></a></li></h4><br>
   <% end %>
 </ul>
+
+<h3>Create Team:</h3><br>
+
+<form id="new_form" method=post action="/<%= @user.slug %>/tweets">
+  <text name="name" placeholder="Team name..."></text>
+  <label for="name">Team Name::</label>
+    <input type="text" name="name" placeholder="Name..."><br></br>
+
+  <input type="submit" id="submit" value="Create Team">
+</form>

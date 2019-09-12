@@ -7,5 +7,7 @@
 <h3>Players:</h3>
 
 <p>
-  List of players on the team.
+  <% @team.players.each do |player| %>
+    <li><a href="/<%= @team.user.slug %>/teams/<%= @team.id %>/players/<%= player.id %>"><%= player.full_name %></a></li><br>
+  <% end %>
 </p>
