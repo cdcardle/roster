@@ -11,3 +11,20 @@
     <li><a href="/<%= @team.user.slug %>/teams/<%= @team.id %>/players/<%= player.id %>"><%= player.full_name %></a></li><br>
   <% end %>
 </p>
+
+<p style="color: red">
+  <% if flash.has?(:player_error) %>
+    <%= flash[:player_error] %>
+  <% end %>
+</p>
+
+<h3>Add Player:</h3><br>
+
+<form method=post action="/<%= @team.user.slug %>/teams/<%= @team.id %>">
+  <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" placeholder="First..."><br></br>
+  <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" placeholder="Last..."><br></br>
+
+  <input type="submit" id="submit" value="Add Player">
+</form>

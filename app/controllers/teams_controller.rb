@@ -7,4 +7,26 @@ class TeamsController < ApplicationController
       redirect '/'
     end
   end
+
+  post "/:slug/teams/:team_id" do
+    if params[:first_name].empty? || params[:last_name].empty?
+      player_error("Names cannot be blank!S")
+    else
+      @player = Player.new(first_name: params[:first_name], last_name: params[:last_name])
+
+      if @player.save
+        team = Team.find(params[:team_id])
+        team.players << @player
+        current_user.players << @player
+        redirect "/#{current_user.slug}/teams/#{team.id}"
+      end
+    end
+  end
+
+  # Helpers
+
+  def player_error(string)
+    flash[:player_error] = string
+    erb :'teams/show'
+  end
 end
