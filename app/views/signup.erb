@@ -10,15 +10,50 @@
 
 <form method=post action="/signup">
   <label for="email">Email:</label>
-    <input type="email" name="email" placeholder="Email Address..."><br></br>
+    <input type="email" name="email" placeholder="Email Address...">
+
+  <p style="color: red">
+    <% if flash.has?(:email_error) %>
+      <%= flash[:email_error] %>
+    <% end %>
+  </p>
+
   <label for="username">Username:</label>
-    <input type="username" name="username" placeholder="Username..."><br></br>
+    <input type="username" name="username" placeholder="Username...">
+
+  <p style="color: red">
+    <% if flash.has?(:username_error) %>
+      <%= flash[:username_error] %>
+    <% end %>
+  </p>
+
   <label for="first_name">First Name:</label>
-    <input type="text" name="first_name" placeholder="First Name..."><br></br>
+    <input type="text" name="first_name" placeholder="First Name...">
+
+  <p style="color: red">
+    <% if flash.has?(:first_name_error) %>
+      <%= flash[:first_name_error] %>
+    <% end %>
+  </p>
+
   <label for="last_name">Last Name:</label>
-    <input type="text" name="last_name" placeholder="Last Name..."><br></br>
+    <input type="text" name="last_name" placeholder="Last Name...">
+
+  <p style="color: red">
+    <% if flash.has?(:last_name_error) %>
+      <%= flash[:last_name_error] %>
+    <% end %>
+  </p>
+
   <label for="password">Password:</label>
-    <input type="password" name="password" placeholder="Password..."><br></br>
+    <input type="password" name="password" placeholder="Password...">
+
+  <p style="color: red">
+    <% if flash.has?(:password_error) %>
+      <%= flash[:password_error] %>
+    <% end %>
+  </p>
+
 
   <input type="submit" id="submit" value="Sign Up!">
 </form>

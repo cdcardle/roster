@@ -1,4 +1,5 @@
 class TeamsController < ApplicationController
+
   get '/:slug/teams/:team_id' do
     if logged_in? && current_user.slug === params[:slug]
       @team = Team.find(params[:team_id])
@@ -12,6 +13,8 @@ class TeamsController < ApplicationController
     if params[:first_name].empty? || params[:last_name].empty?
       @team = Team.find(params[:team_id])
       player_error("Names cannot be blank!")
+      redirect "/#{current_user.slug}/teams/#{@team.id}"
+      flash[:messages].clear
     else
       @player = Player.new(first_name: params[:first_name], last_name: params[:last_name])
 

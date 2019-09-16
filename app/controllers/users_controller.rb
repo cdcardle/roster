@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   get "/:slug" do
     if logged_in? && current_user.slug === params[:slug]
       @user = current_user
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
     if params[:name].empty?
       @user = current_user
       team_error("Team name cannot be blank!")
+      redirect "/#{current_user.slug}"
+      flash[:messages].clear
     else
       @team = Team.new(name: params[:name])
 
