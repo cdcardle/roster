@@ -14,17 +14,24 @@
 
 <h3>Add Player:</h3><br>
 
-<p style="color: red">
-  <% if flash.has?(:player_error) %>
-    <%= flash[:player_error] %>
-  <% end %>
-</p>
-
 <form method=post action="/<%= @team.user.slug %>/teams/<%= @team.id %>">
   <label for="first_name">First Name:</label>
-    <input type="text" name="first_name" placeholder="First..."><br></br>
+    <input type="text" name="first_name" placeholder="First...">
+
+    <p style="color: red">
+      <% if flash.has?(:first_name_error) %>
+        <%= flash[:first_name_error] %>
+      <% end %>
+    </p>
+
   <label for="last_name">Last Name:</label>
-    <input type="text" name="last_name" placeholder="Last..."><br></br>
+    <input type="text" name="last_name" placeholder="Last...">
+
+    <p style="color: red">
+      <% if flash.has?(:last_name_error) %>
+        <%= flash[:last_name_error] %>
+      <% end %>
+    </p>
 
   <input type="submit" id="submit" value="Add Player">
 </form>

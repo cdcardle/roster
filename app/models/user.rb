@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email, message: "Email already in use"
   validates_uniqueness_of :username, message: "Username already in use"
   validates :email, presence: {message: "valid email required"}
-  validates :username, length: {minimum: 8, message: "must be at least 8 characters long."}
-  validates :password, length: {minimum: 8, message: "must be at least 8 characters long."}
+  validates :username, length: {minimum: 8, message: "must be at least 8 characters long"}
+  validates :password, length: {minimum: 8, message: "must be at least 8 characters long"}
   validates :first_name, presence: {message: "can't be blank"}
   validates :last_name, presence: {message: "can't be blank"}
 
