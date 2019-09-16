@@ -14,7 +14,6 @@ class ApplicationController < Sinatra::Base
   # Home
 
   get "/" do
-    # binding.pry
     if logged_in?
       redirect "/#{current_user.slug}"
     else
@@ -58,7 +57,6 @@ class ApplicationController < Sinatra::Base
       end
 
       redirect '/signup'
-      # flash[:messages].clear
     end
   end
 

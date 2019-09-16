@@ -1,12 +1,25 @@
 <h2>Welcome back, Coach <%= @user.last_name %>!</h2>
 
-<ul>
-  <% @user.teams.each do |team| %>
-    <h4><li><a href="/<%= @user.slug %>/teams/<%= team.id %>"><%= team.name %></a></li></h4><br>
+<% if @user.teams.empty? %>
+  <p>You have no teams.</p>
+<% else %>
+  <table>
+    <tr>
+      <th>Team Name</th>
+    </tr>
+    <% @user.teams.each do |team| %>
+      <tr>
+        <td style="font-weight:bold;"><a href="/<%= @user.slug %>/teams/<%= team.id %>"><%= team.name %></a></td>
+        <td><a href="/<%= @user.slug %>/teams/<%= team.id %>/edit">Edit</a></td>
+        
+      </tr>
+    <% end %>
+  </table>
   <% end %>
-</ul>
 
-<h3>Create Team:</h3><br>
+<br></br>
+
+<h4>Create Team:</h4><br>
 
 <form method=post action="/<%= @user.slug %>">
   <label for="name">Team Name::</label>
@@ -20,3 +33,4 @@
 
   <input type="submit" id="submit" value="Create Team">
 </form>
+

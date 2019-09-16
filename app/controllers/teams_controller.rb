@@ -27,4 +27,27 @@ class TeamsController < ApplicationController
       end
     end
   end
+
+  get "/:slug/teams/:team_id/edit" do
+    @team = Team.find(params[:team_id])
+    @user = @team.user
+    erb :'teams/edit'
+  end
+  
+  patch "/:slug/teams/:team_id" do
+    @team = Team.find(params[:team_id])
+    @team.name = params[:name]
+    @team.save
+    redirect to "/#{current_user.slug}"
+  end
+
+  # delete "teams/:id/delete" do
+  #   @team = Team.find(params[:id])
+
+  #   if @team.user_id === current_user.id
+  #     @team.destroy
+  #   end
+
+  #   redirect "/#{current_user.slug}"
+  # end
 end
