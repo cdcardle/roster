@@ -4,13 +4,17 @@
 
 <p><%= @team.user.full_name %></p>
 
-<h3>Players:</h3>
-
-<p>
+<table>
+  <tr><th>Player Name:</th></tr>
   <% @team.players.each do |player| %>
-    <li><a href="/<%= @team.user.slug %>/teams/<%= @team.id %>/players/<%= player.id %>"><%= player.full_name %></a></li><br>
+    <tr>
+      <td><a href="/<%= @team.user.slug %>/teams/<%= @team.id %>/players/<%= player.id %>"><%= player.full_name %></a></td>
+      <td><a href="/<%= player.user.slug %>/teams/<%= player.team.id %>/players/<%= player.id %>/edit">Edit</a></td>
+    </tr>
   <% end %>
-</p>
+</table>
+
+<br></br>
 
 <h3>Add Player:</h3><br>
 
