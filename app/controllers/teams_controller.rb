@@ -41,13 +41,11 @@ class TeamsController < ApplicationController
     redirect to "/#{current_user.slug}"
   end
 
-  # delete "teams/:id/delete" do
-  #   @team = Team.find(params[:id])
-
-  #   if @team.user_id === current_user.id
-  #     @team.destroy
-  #   end
-
-  #   redirect "/#{current_user.slug}"
-  # end
+  delete '/:slug/teams/:team_id/delete' do
+    @team = Team.find(params[:team_id])
+    binding.pry
+    @team.players.destroy_all
+    @team.delete
+    redirect to "/#{current_user.slug}"
+  end
 end
