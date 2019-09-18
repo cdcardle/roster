@@ -22,4 +22,10 @@ class PlayersController < ApplicationController
     @player.save
     redirect to "/#{current_user.slug}/teams/#{params[:team_id]}"
   end
+
+  delete '/:slug/teams/:team_id/players/:player_id/delete' do
+    @player = Player.find(params[:player_id])
+    @player.delete
+    redirect to "/#{current_user.slug}/teams/#{params[:team_id]}"
+  end
 end

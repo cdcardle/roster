@@ -9,7 +9,13 @@
   <% @team.players.each do |player| %>
     <tr>
       <td><a href="/<%= @team.user.slug %>/teams/<%= @team.id %>/players/<%= player.id %>"><%= player.full_name %></a></td>
+      
       <td><a href="/<%= player.user.slug %>/teams/<%= player.team.id %>/players/<%= player.id %>/edit">Edit</a></td>
+
+      <td><form action="/<%= @team.user.slug %>/teams/<%= @team.id %>/players/<%= player.id %>/delete" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" id="delete" value="Delete">
+      </form></td>
     </tr>
   <% end %>
 </table>
