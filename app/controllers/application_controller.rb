@@ -17,7 +17,7 @@ class ApplicationController < Sinatra::Base
     if logged_in?
       redirect "/#{current_user.slug}"
     else
-      redirect "/signup"
+      redirect "/login"
     end
   end
 
