@@ -52,4 +52,24 @@ describe "User" do
       expect(@bob.save).to eq(true)
     end
   end
+
+  describe "first name" do
+    it 'is not blank' do
+      @joe.first_name = ''
+      @bob.first_name = 'Axl'
+
+      expect(@joe.save).to eq(false)
+      expect(@bob.save).to eq(true)
+    end
+  end
+
+  describe "last name" do
+    it 'is not blank' do
+      @joe.last_name = ''
+      @bob.last_name = 'Rose'
+
+      expect(@joe.save).to eq(false)
+      expect(@bob.save).to eq(true)
+    end
+  end
 end
