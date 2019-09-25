@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "User" do
   before do
-    @bob = User.create(first_name: "Bob", last_name: "Seger", email: "silverbullet1945@hotmail.com", username: "nightmoves", password: "mainstreet")
+    @bob = User.create(first_name: "Bob", last_name: "Seger", email: "silverbullet1945@hotmail.com", username: "night moves", password: "mainstreet")
     @joe = User.new(email: "joesatriani@gmail.com", first_name: "Joe", last_name: "Satriani", username: "joesatriani", password: "joespassword")
   end
 
@@ -39,7 +39,7 @@ describe "User" do
 
   describe "username" do
     it "is unique" do
-      @joe.username = "nightmoves"
+      @joe.username = "night moves"
 
       expect(@joe.save).to eq(false)
     end
@@ -70,6 +70,19 @@ describe "User" do
 
       expect(@joe.save).to eq(false)
       expect(@bob.save).to eq(true)
+    end
+  end
+
+  describe "slug" do
+    it 'slugs the username' do
+      expect(@bob.slug).to eq("night-moves")
+    end
+  end
+
+  describe "find_by_slug" do
+    it 'can find a user based on the slug' do
+      slug = @bob.slug
+      expect(User.find_by_slug(slug).username).to eq("night moves")
     end
   end
 end
