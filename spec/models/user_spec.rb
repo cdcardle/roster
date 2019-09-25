@@ -7,7 +7,7 @@ describe "User" do
   end
 
   describe "password" do
-    it 'has a secure password' do
+    it 'is secure' do
       expect(@bob.authenticate("agaisntthewind")).to eq(false)
       expect(@bob.authenticate("mainstreet")).to eq(@bob)
     end
@@ -22,7 +22,7 @@ describe "User" do
   end
 
   describe "email" do
-    it 'has an email' do
+    it 'is not blank' do
       @joe.email = ''
       @bob.email = 'againstthewind@yahoo.com'
 
@@ -30,10 +30,26 @@ describe "User" do
       expect(@bob.save).to eq(true)
     end
 
-    it 'has a unique email' do
+    it 'is unique' do
       @joe.email = "silverbullet1945@hotmail.com"
 
       expect(@joe.save).to eq(false)
+    end
+  end
+
+  describe "username" do
+    it "is unique" do
+      @joe.username = "nightmoves"
+
+      expect(@joe.save).to eq(false)
+    end
+
+    it "is at least 8 characters long" do
+      @joe.username = "joe"
+      @bob.username = "bobsusername"
+
+      expect(@joe.save).to eq(false)
+      expect(@bob.save).to eq(true)
     end
   end
 end
