@@ -4,16 +4,25 @@ This is a Sinatra project for a web application for sport coaches.  The coaches 
 
 ## Installation
 To install this project, first clone the repo to your terminal.
+```
+git clone git@github.com:cdcardle/roster.git
+```
 
-Then run:
+Then open that folder in your terminal and run:
+```
+bundle install
+```
+
+Now that the dependent gems are installed, run:
 ```
 shotgun
 ```
-to see how it works in your browser.
+
+Finally you can open your browser and go to the localhost address shotgun has given you.
 
 ## Contributors
 #### Contributors on GitHub
-* [Contributors](https://github.com/username/sw-name/graphs/contributors)
+* [Contributors](https://github.com/cdcardle/roster/graphs/contributors)
 
 ## License
 This project is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
