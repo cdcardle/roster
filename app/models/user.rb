@@ -3,7 +3,6 @@ class User < ActiveRecord::Base
   has_many :players
   has_many :teams
 
-  # validates_uniqueness_of :username, message: "Username already in use"
   validates_uniqueness_of :email, message: "Email already in use"
   validates_uniqueness_of :username, message: "Username already in use"
   validates :email, presence: {message: "valid email required"}
