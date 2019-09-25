@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   post "/:slug" do
     if params[:name].empty?
       @user = current_user
-      team_error("can't be blank!")
+      flash[:team_error] =  "can't be blank!"
       redirect "/#{current_user.slug}"
       flash[:messages].clear
     else
@@ -23,12 +23,5 @@ class UsersController < ApplicationController
         redirect "/#{current_user.slug}"
       end
     end
-  end
-
-  # Helpers
-
-  def team_error(string)
-    flash[:team_error] = string
-    erb :'users/show'
   end
 end

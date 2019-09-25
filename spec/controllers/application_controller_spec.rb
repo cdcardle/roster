@@ -1,8 +1,4 @@
-require_relative "spec_helper"
-
-def app
-  ApplicationController
-end
+require "spec_helper"
 
 @bob = User.create(first_name: "Bob", last_name: "Seger", email: "silverbullet1945@hotmail.com", username: "nightmoves", password: "mainstreet")
 @tom = User.create(first_name: "Tom", last_name: "Petty", email: "heartbreakers101@hotmail.com", username: "breakdown", password: "freefallin")
