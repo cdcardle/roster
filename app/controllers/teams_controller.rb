@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
 
   post "/:slug/teams/:team_id" do
     @team = Team.find(params[:team_id])
+    @user = User.find_by_slug(params[:slug])
 
     if params[:first_name].empty? || params[:last_name].empty?
       flash[:first_name_error] = "can't be blank" if params[:first_name].empty?
@@ -22,7 +23,7 @@ class TeamsController < ApplicationController
 
       if @player.save
         @team.players << @player
-        current_user.players << @player
+        @user.players << @player
         redirect "/#{current_user.slug}/teams/#{@team.id}"
       end
     end
@@ -43,7 +44,6 @@ class TeamsController < ApplicationController
 
   delete '/:slug/teams/:team_id/delete' do
     @team = Team.find(params[:team_id])
-    binding.pry
     @team.players.destroy_all
     @team.delete
     redirect to "/#{current_user.slug}"
