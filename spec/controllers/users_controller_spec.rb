@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe "/:slug" do
-  describe "get" do
+describe UsersController do
+  describe "get /slug" do
     it "redirects to '/' if not logged in" do
       get '/nightmoves'
       expect(last_response.header['Location']).to eq("http://example.org/")
@@ -20,7 +20,7 @@ describe "/:slug" do
     end
   end
 
-  describe 'post' do
+  describe 'post /slug' do
     it "creates a new team and redirects to /:slug" do
       @bob = User.create(first_name: "Bob", last_name: "Seger", email: "silverbullet1945@hotmail.com", username: "nightmoves", password: "mainstreet")
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Teams Controller" do
+describe TeamsController do
   describe "/:slug/teams/:team_id" do
     describe "get" do
       before(:each) do
@@ -66,7 +66,7 @@ describe "Teams Controller" do
         @bob.teams << @tigers
       end
 
-      it "changes to team's name and redirect to /:slug" do
+      it "changes the team's name and redirects to /:slug" do
         post "/login", {username: "nightmoves", password: "mainstreet"}
         patch "/nightmoves/teams/1", {
           name: "Lions"
@@ -110,6 +110,8 @@ describe "Teams Controller" do
       team_count = Team.all.size
       
       delete '/nightmoves/teams/1/delete'
+
+      binding.pry
 
       expect(Team.all.size).to eq(team_count - 1)
       expect(last_response.status).to eq(302)
