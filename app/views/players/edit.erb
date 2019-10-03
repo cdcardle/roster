@@ -1,9 +1,9 @@
 <h2>Edit Player:</h2>
 <form method=post action="/<%= @user.slug %>/teams/<%= @team.id %>/players/<%= @player.id %>">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <label for="first_name">First Name::</label>
+  <label for="first_name">First Name:</label>
     <input type="text" name="first_name" value="<%= @player.first_name %>">
-  <label for="last_name">Last Name::</label>
+  <label for="last_name">Last Name:</label>
     <input type="text" name="last_name" value="<%= @player.last_name %>">
 
   <input type="submit" value="Edit Player">
