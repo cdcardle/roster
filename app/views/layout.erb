@@ -21,14 +21,19 @@
   <body>
     <div class="wrapper">
       <ul>
-        <% if logged_in? %>
-          <h3><li style="display:inline;"><a href="/">My Roster</a></li>
-          <li style="display:inline;"><a href="/logout">Log Out</a></li></h3>
-        <% else %>
-          <h3><li style="display:inline;"><a href="/signup">Sign Up</a></li>
-          <li style="display:inline;"><a href="/login">Log In</a></li></h3>
-        <% end %>
+        <h3>
+          <% if logged_in? %>
+            <li style="display:inline;"><a href="/">My Roster</a></li>
+            <li style="display:inline;"><a href="/logout">Log Out</a></li>
+          <% else %>
+            <li style="display:inline;"><a href="/signup">Sign Up</a></li>
+            <li style="display:inline;"><a href="/login">Log In</a></li>
+          <% end %>
+          <li style="display:inline;float: right;color:gold;background-color:blue;font-size:2em;">ROSTER 2019</li>
+        </h3>
       </ul>
+
+      
 
       <%= yield %>
 
